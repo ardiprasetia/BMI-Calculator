@@ -14,6 +14,18 @@ public class MainActivity extends AppCompatActivity {
     TextView ttvResultNumber, ttvResultSentence;
 
 
+    private static final String STATE_RESULT = "state_result";
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(STATE_RESULT, ttvResultNumber.getText().toString());
+      
+
+
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +38,12 @@ public class MainActivity extends AppCompatActivity {
         ttvResultNumber = findViewById(R.id.tvResultNumber);
         ttvResultSentence = findViewById(R.id.tvResultSentence);
 
+        if (savedInstanceState != null) {
+            String result = savedInstanceState.getString(STATE_RESULT);
+            ttvResultNumber.setText(result);
 
+
+        }
     }
 
     public void calculateBMI(View view) {
